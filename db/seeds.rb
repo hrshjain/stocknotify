@@ -8,6 +8,10 @@
 
 if Rails.env.development?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+  Notification.create!(stock_symbol: 'FB', lower_limit: 180, upper_limit: 190, enable_email_notification: true,\
+                        enable_sms_notification: true, admin_user_id: 1)
+  Notification.create!(stock_symbol: 'AAPL', lower_limit: 300, upper_limit: 400, enable_email_notification: true,\
+                        enable_sms_notification: true, admin_user_id: 1)
   AdminUser.create!(email: 'ggbaker@sfu.ca', first_name: 'Greg', last_name: 'Baker',phone_number: '+10000000000',\
                     password: 'password', password_confirmation: 'password')
   Notification.create!(stock_symbol: 'FB', lower_limit: 180, upper_limit: 190, enable_email_notification: true,\
