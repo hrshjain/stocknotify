@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  symbol: MyString
+  name: MyString
+  latest_price: 1.5
+  enabled: false
+
+two:
+  symbol: MyString
+  name: MyString
+  latest_price: 1.5
+  enabled: false

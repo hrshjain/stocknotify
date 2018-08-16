@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      h2, h3, h4 {
+        font-weight: bold;
+      }
+    </style>
+
+    <title>Help Center | StockNotify</title>
+
+  </head>
+
+  <body>
+
+    <h2>How to Use StockNotify</h2>
+
+    <section id="introduction">
+
+      <h3>A Shares Market Notification Service For Brokers, Businessmen And Women</h3>
+
+      <p>
+        This help guide will show you the steps and tools needed to use StockNotify to its full advantage.
+      </p>
+
+    </section>
+
+    <section id="navigation">
+
+      <h3>Main Pages and their Uses</h3>
+
+      <p>
+        The StockNotify web application consists of the following major pages:
+      </p>
+
+      <ol>
+
+        <li>
+          The <strong><%= link_to "dashboard", admin_dashboard_path %></strong> displays stock charts of all your subscribed stocks for both the hour and the year.
+        </li>
+
+        <li>
+          The <strong><%= link_to "notifications page", admin_notifications_path %></strong> shows all of your stocks - both subscribed and unsubscribed - and what their stock prices at the minute are. There, you can monitor and edit your upper and lower limits to set a safe range for your stocks based on the decision of your business.
+        </li>
+
+        <li>
+          The <strong><%= link_to "user information page", admin_admin_users_path %></strong> displays the primary user and administrator for the account. There, you can monitor and edit your name, phone number, e-mail address, and password.
+        </li>
+
+      </ol>
+
+    </section>
+
+  </body>
+
+</html>

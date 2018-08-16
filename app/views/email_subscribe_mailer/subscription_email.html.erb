@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>StockNotify: Subscription Success</title>
+		<style>
+			p {
+			    background: #fff;
+			    background-color: #edeff2;
+			    font-size: 17px;
+			    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+			    margin-bottom: 10px;
+			    overflow: auto;
+			    color: #535456;
+			  }
+
+			h1 {
+			  	font-size: 22px;
+			  	background-color: #edeff2;
+			  	color: #535456;
+			  	font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+			  }
+
+			div {
+				margin: auto;
+				width: 50%;
+				background-color: #edeff2;
+				text-align: center;
+				padding: 7px;
+			}
+
+			body {
+				 border-bottom: 1px solid #dedede;
+				 padding: 7px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<h1> 
+				Hello, <%= @first_name %>!
+			</h1>
+
+			<p> You have been subscribed to receive future updates for the following stock share: <strong><%= @stock_symbol %></strong> </br></br>
+				You will receive notifications via email when the price is out of your specificed bounds. </br>
+				You can unsubscribe at any time by <em>logging in.</em>
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,258 @@
+<!-- 
+  References:
+    https://blog.arkency.com/2017/07/how-to-quickly-add-graphs-and-charts-to-rails-app/
+    https://developers.google.com/chart/interactive/docs/gallery/linechart
+    https://www.w3schools.com/js/js_dates.asp
+-->
+
+<html lang="en">
+
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawYearlyStockCharts);
+      google.charts.setOnLoadCallback(drawHourlyStockCharts);
+
+      function drawYearlyStockCharts() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'X');
+
+        var stock_list = JSON.parse('<%= raw @stock_list.to_json %>');
+        var date_list = JSON.parse('<%= raw @date_list.to_json %>');
+        var stock_date_price_list = JSON.parse('<%= raw @stock_date_price_list.to_json %>');
+
+//          console.log(stock_list)
+//          console.log(date_list)
+//          console.log(stock_date_price_list)
+
+          for (var i = 0; i < stock_list.length; i++) {
+              data.addColumn('number', stock_list[i].symbol);
+          }
+
+          for (var i = 0; i < date_list.length; i++) {
+            var arrayWithPrice = new Array();
+            for (var j = 0; j < stock_list.length; j++) {
+              var obj = stock_date_price_list.find(function (item) {
+                  return item.bimonthly_date_id === date_list[i].id && item.stock_id === stock_list[j].id;
+              });
+              if (obj != undefined && obj != null) {
+                  arrayWithPrice.push(obj.price)
+              }
+              ;
+            }
+            var arraywithDate = [new Date(date_list[i].value)]
+            if (obj != undefined && obj != null) {
+                data.addRows([arraywithDate.concat(arrayWithPrice)])
+            }
+          }
+
+//        data.addRows([
+//          [new Date(2018, 0, 1),    156,  348,  407],
+//          [new Date(2018, 0, 15),   163,  489,  196],
+//          [new Date(2018, 1, 1),    395,  293,  366],
+//          [new Date(2018, 1, 15),   190,  317,  391],
+//          [new Date(2018, 2, 1),    185,  171,  281],
+//          [new Date(2018, 2, 15),   200,  408,  157],
+//          [new Date(2018, 3, 1),    85,   392,  413],
+//          [new Date(2018, 3, 15),   238,  363,  339],
+//          [new Date(2018, 4, 1),    182,  236,  152],
+//          [new Date(2018, 4, 15),   175,  110,  246],
+//          [new Date(2018, 5, 1),    50,   403,  113],
+//          [new Date(2018, 5, 15),   237,  400,  473],
+//          [new Date(2018, 6, 1),    270,  271,  441],
+//          [new Date(2018, 6, 15),   300,  418,  356],
+//          [new Date(2018, 7, 1),    150,  343,  242],
+//          [new Date(2018, 7, 15),   257,   78,  211],
+//          [new Date(2018, 8, 1),    55,   109,  232],
+//          [new Date(2018, 8, 15),   80,   344,  218],
+//          [new Date(2018, 9, 1),    100,  402,  466],
+//          [new Date(2018, 9, 15),   103,   31,  464],
+//          [new Date(2018, 10, 1),   159,  472,  382],
+//          [new Date(2018, 10, 15),  180,  371,  281],
+//          [new Date(2018, 11, 1),   106,   93,  197],
+//          [new Date(2018, 11, 15),  125,  275,  318],
+//        ]);
+
+        function getStockSymbols(){
+          var a =''
+          for (var i = 0; i < stock_list.length; i++) {
+              a = a + ' ' + stock_list[i].symbol
+          }
+          return a;
+        }
+
+        var options = {
+
+          title: 'Yearly Stock Charts for ' +  getStockSymbols(),
+
+          titleTextStyle: {
+            color: '#212121',
+            fontSize: 24,
+            bold: true,
+          },
+          
+          hAxis: {
+            title: 'Time (in bi-weekly intervals)',
+            textStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: false,
+            },
+            titleTextStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: true,
+            }
+          },
+
+          vAxis: {
+            title: 'Current Stock Price (in dollars)',
+            textStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: false,
+            },
+            titleTextStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: true,
+            }
+          },
+
+          legend: {
+            textStyle: {
+              fontSize: 20
+            }
+          },
+
+          colors: [
+            '#C50000', // Apple
+            '#1240AB', // Facebook
+            '#1097FF', // Twitter
+          ]
+
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_stock_yearly'));
+
+        chart.draw(data, options);
+
+      }
+
+      function drawHourlyStockCharts() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'X');
+        data.addColumn('number', 'AAPL');
+        data.addColumn('number', 'FB');
+        data.addColumn('number', 'TWTR');
+
+        data.addRows([
+          [new Date(2018, 7, 1, 0, 0),    156,  348,  432], 
+          [new Date(2018, 7, 1, 0, 2),   163,  489,  470], 
+          [new Date(2018, 7, 1, 0, 4),    395,  293,  366], 
+          [new Date(2018, 7, 1, 0, 6),   190,  317,  271],
+          [new Date(2018, 7, 1, 0, 8),    76,  171,  480], 
+          [new Date(2018, 7, 1, 0, 10),   249,  408,  157], 
+          [new Date(2018, 7, 1, 0, 12),    85,   392,  413], 
+          [new Date(2018, 7, 1, 0, 14),   238,  363,  339],
+          [new Date(2018, 7, 1, 0, 16),    182,  471,  152], 
+          [new Date(2018, 7, 1, 0, 18),   175,  110,  446], 
+          [new Date(2018, 7, 1, 0, 20),    50,   403,  113], 
+          [new Date(2018, 7, 1, 0, 22),   63,  400,  473],
+          [new Date(2018, 7, 1, 0, 24),    270,  271,  441], 
+          [new Date(2018, 7, 1, 0, 26),   319,  111,  62], 
+          [new Date(2018, 7, 1, 0, 28),    150,  161,  226], 
+          [new Date(2018, 7, 1, 0, 30),   257,   490,  211],
+          [new Date(2018, 7, 1, 0, 32),    55,   292,  186], 
+          [new Date(2018, 7, 1, 0, 34),   288,   219,  166], 
+          [new Date(2018, 7, 1, 0, 36),    100,  402,  466], 
+          [new Date(2018, 7, 1, 0, 38),   103,   31,  464],
+          [new Date(2018, 7, 1, 0, 40),   159,  472,  382], 
+          [new Date(2018, 7, 1, 0, 42),  180,  371,  281], 
+          [new Date(2018, 7, 1, 0, 44),   106,   93,  197], 
+          [new Date(2018, 7, 1, 0, 46),  125,  275,  318],
+          [new Date(2018, 7, 1, 0, 48),  29,  484,  308],
+          [new Date(2018, 7, 1, 0, 50),  232,  445,  413],
+          [new Date(2018, 7, 1, 0, 52),  92,  143,  443],
+          [new Date(2018, 7, 1, 0, 54),  227,  312,  385],
+          [new Date(2018, 7, 1, 0, 56),  74,  244,  206],
+          [new Date(2018, 7, 1, 0, 58),  207,  153,  368],
+          [new Date(2018, 7, 1, 1, 0),  256,  131,  158],
+        ]);
+
+        var options = {
+
+          title: 'Hourly Stock Charts for Apple, Facebook, and Twitter',
+
+          titleTextStyle: {
+            color: '#212121',
+            fontSize: 24,
+            bold: true,
+          },
+          
+          hAxis: {
+            title: 'Time (in every two minutes)',
+            textStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: false,
+            },
+            titleTextStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: true,
+            }
+          },
+
+          vAxis: {
+            title: 'Current Stock Price (in dollars)',
+            textStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: false,
+            },
+            titleTextStyle: {
+              color: '#212121',
+              fontSize: 20,
+              bold: true,
+            }
+          },
+
+          legend: {
+            textStyle: {
+              fontSize: 20
+            }
+          },
+
+          colors: [
+            '#C50000', // Apple
+            '#1240AB', // Facebook
+            '#1097FF', // Twitter
+          ]
+
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_stock_hourly'));
+
+        chart.draw(data, options);
+
+      }
+    </script>
+
+  </head>
+
+  <body>
+
+    <h2>Stock Graphs</h2>
+
+    <div id="chart_stock_yearly" style="width: 100%; height: 80vh"></div>
+    <div id="chart_stock_hourly" style="width: 100%; height: 80vh"></div>
+
+
+  </body>
+
+</html>

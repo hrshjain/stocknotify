@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>Facebook</td>
+    <td>FB</td>
+    <td><%=IEX::Resources::Price.get('FB') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Apple</td>
+    <td>AAPL</td>
+    <td><%=IEX::Resources::Price.get('AAPL') rescue "N/A"%></td>
+  </tr>
+  <tr>
+    <td>Intel</td>
+    <td>INTC</td>
+    <td><%=IEX::Resources::Price.get('INTC') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>AT&T</td>
+    <td>T</td>
+    <td><%=IEX::Resources::Price.get('T') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Twitter</td>
+    <td>TWTR</td>
+    <td><%=IEX::Resources::Price.get('TWTR') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Amazon</td>
+    <td>AMZN</td>
+    <td><%=IEX::Resources::Price.get('AMZN')rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Ebay</td>
+    <td>EBAY</td>
+    <td><%=IEX::Resources::Price.get('EBAY') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Starbucks</td>
+    <td>SBUX</td>
+    <td><%=IEX::Resources::Price.get('SBUX') rescue "N/A" %></td>
+  </tr>
+  <tr>
+    <td>Nike</td>
+    <td>NKE</td>
+    <td><%=IEX::Resources::Price.get('NKE')rescue "N/A"%></td>
+  </tr>
+  <tr>
+    <td>Google</td>
+    <td>GOOGL</td>
+    <td><%=IEX::Resources::Price.get('GOOGL') rescue "N/A" %></td>
+  </tr>
+</table>
+
+
+</body>
+</html>

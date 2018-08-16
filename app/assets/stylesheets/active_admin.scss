@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Miriam+Libre');
+
+$body-background-color: #FFF !default;
+$primary-color: #082568 !default;
+$secondary-color: #1240AB !default;
+$text-color: black !default;
+$table-stripe-color: $primary-color !default;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+
+/*************
+* BASE RULES
+*************/
+
+*, *::before, *::after {
+	font-family: 'Miriam Libre', Helvetica, sans-serif;
+}
+
+body {
+	font-size: 1rem;
+	line-height: 2rem;
+}
+
+th {
+	white-space: nowrap;
+}
+
+table.index_table tr.even td {
+	background-color: #F5F5F5;
+}
+
+.medium-tone {
+	color: #852D2E;
+}
+
+/*************
+* Customize to Stocknotify
+*************/
+
+#active_admin_content{
+	margin: 0	!important;
+	padding: 70px 35px !important;
+}
+
+/*************
+* HEADER RULES
+*************/
+
+#header, .header {
+	background-color: #212121 !important;
+	background-image: linear-gradient(180deg, #000000, #212121);
+}
+
+#header h1, #header li,
+.header h1, .header li {
+	color: white;
+}
+
+#header h1, .header h1 {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: $secondary-color 3px 2px 0
+}
+
+
+#title_bar, .title_bar {
+	background-color: $primary-color !important;
+	background-image: linear-gradient(180deg, $primary-color, $secondary-color);
+	text-shadow: $primary-color 0 1px 0;
+	border: solid 1px $primary-color;
+}
+
+#title_bar h2, #title_bar a, #title_bar span,
+#title_bar h2, .title_bar a, .title_bar span {
+	color: white;
+}
+
+.breadcrumb {
+	padding: 0.5rem 0 0 0;
+	margin: 0;
+}
+
+#page_title, #title_bar h2 {
+	line-height: 4rem;
+}
+
+/*************
+* LOGIN RULES
+*************/
+
+body.logged_out h2, #login h2 {
+	padding: 0.5rem 1rem;
+	text-transform: uppercase;
+}

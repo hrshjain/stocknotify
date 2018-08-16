@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stock_symbol: MyString
+  stock_name: MyString
+  upper_limit: 1.5
+  lower_limit: 1.5
+  enable_email_notification: false
+  enable_sms_notification: false
+
+two:
+  stock_symbol: MyString
+  stock_name: MyString
+  upper_limit: 1.5
+  lower_limit: 1.5
+  enable_email_notification: false
+  enable_sms_notification: false

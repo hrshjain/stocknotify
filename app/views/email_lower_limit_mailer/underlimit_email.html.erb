@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>StockNotify: Under Lower Limit</title>
+		<style>
+			p {
+			    background: #fff;
+			    background-color: #edeff2;
+			    font-size: 16px;
+			    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+			    margin-bottom: 10px;
+			    overflow: auto;
+			    color: #535456;
+			  }
+
+			h1 {
+			  	font-size: 22px;
+			  	background-color: #edeff2;
+			  	color: #535456;
+			  	font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+			  }
+
+			div {
+				margin: auto;
+				width: 50%;
+				background-color: #edeff2;
+				text-align: center;
+				padding: 0.5px;
+			}
+
+			body {
+				 border-bottom: 1px solid #dedede;
+				 padding: 7px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<h1> 
+				Hello, <%= @first_name %>!
+			</h1>
+
+			<p>
+				The stock price for <strong><%= @stock_symbol %></strong> has fallen under the set lower limit. </br>
+				<p style="margin-right:280px">New price: <strong><%= @current_stock_price %></strong> </br></p>
+				<p style="margin-right:280px">Your limit: <strong><%= @lower_limit %></strong> <br> </p>
+				</br>
+				<p>To unsubscribe, you can delete this limit by <em>logging in.</em></p>
+			</p>
+		</div>
+	</body>
+</html>
