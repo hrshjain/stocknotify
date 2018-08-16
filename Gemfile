@@ -43,7 +43,7 @@ gem 'sprockets', '~>3.7.2'
 
 
 # Install letter_opener for viewing emails
-gem "letter_opener", :group => :development
+gem "letter_opener"
 gem 'whenever', '~> 0.9.4'
 
 
