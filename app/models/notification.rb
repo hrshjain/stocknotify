@@ -115,9 +115,9 @@ class Notification < ApplicationRecord
   end
 
   def update_bimonthly_date_prices
-    ::UpdateTable::UpdateBimonthlyDates.update_bimonthly_date_table
+    UpdateTable::UpdateBimonthlyDates.update_bimonthly_date_table
     sleep 1
-    ::UpdateTable::UpdateBimonthlyPrices.assign_values
+    UpdateTable::UpdateBimonthlyPrices.assign_values
   end
 
   def stock_price_sms
